@@ -23,7 +23,22 @@ var DATA = {
 
 var Menu = React.createClass({
   render () {
-    return null;
+    var mapped = DATA.items.filter(function(item){
+      return item.type === 'mexican';
+    }).sort(function(a,b){
+      return a.name > b.name;
+    }).map(function(element){
+          return <li> {element.name} </li>;
+        });
+    return (
+        <div>
+        <h1> {DATA.title} </h1>
+          <ul>
+            {mapped}
+          </ul>
+        </div>
+
+      );
   }
 });
 
