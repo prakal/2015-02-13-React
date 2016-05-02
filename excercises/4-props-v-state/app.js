@@ -18,25 +18,23 @@ var Tabs = React.createClass({
 
   propTypes: {
     data: React.PropTypes.array.isRequired,
-    activeTabIndex: React.PropTypes.number
+    onActivate:  React.PropTypes.func.isRequired
   },
 
-  handleTabClick (index) {
-    this.props.onActivateTab(index)
-    // render new tab description
-
+  getDefaultProps(){
+    return {activeTabIndex: 0}
   },
 
   renderTabs () {
     return this.props.data.map((tab, index) => {
       var style = this.props.activeTabIndex === index ?
         styles.activeTab : styles.tab;
-      var clickHandler = this.handleTabClick.bind(this, index);
+      var clickHandler = this.props.onActivate.bind(null, index);
       return (
         <div key={tab.name} style={style} onClick={clickHandler}>
           {tab.name}
         </div>
-// </a>
+        // </a>
       );
     });
   },
@@ -56,40 +54,33 @@ var Tabs = React.createClass({
         <div style={styles.tabs}>
           {this.renderTabs()}
         </div>
-
         <div style={styles.tabPanels}>
           {this.renderPanel()}
         </div>
       </div>
-// </a>
-
+      // </a>
     );
   }
 });
 
 var App = React.createClass({
-  getInitialState () {
-    return {
-      activeTabIndex : 2
-    };
+  getInitialState(){
+    return {activeTabIndex : 1}
   },
-  handleTab(index) {
+  handleTab (index) {
     this.setState({
       activeTabIndex : index
-    })
+    });
   },
-
   render () {
     return (
       <div>
         <h1>Props v. State</h1>
         <Tabs 
-        onActivateTab = {this.handleTab}
-        activeTabIndex = {this.state.activeTabIndex} 
-        data={this.props.tabs}/>
+          onActivate={this.handleTab}
+          activeTabIndex={this.state.activeTabIndex}
+          data={this.props.tabs}/>
       </div>
-// </a>
-
     );
   }
 });
