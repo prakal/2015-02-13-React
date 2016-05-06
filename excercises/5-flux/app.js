@@ -8,5 +8,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 var React = require('react');
 var App = require('./app/components/App');
+var Solution = require('./solution/components/App');
 React.render(<App/>, document.body);
 

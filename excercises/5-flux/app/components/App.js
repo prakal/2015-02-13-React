@@ -20,9 +20,15 @@ var App = React.createClass({
     this.setState(ContactsStore.getState());
   },
 
+  deleteContactClick (contact) {
+    // this is a user interaction. We need to go to ActionCreator for this interaction
+    ViewActionCreators.deleteContact(contact);
+  },
+
   renderContacts () {
     return this.state.contacts.map((contact) => {
-      return <li>{contact.first} {contact.last}</li>;
+      var deleteContact = this.deleteContactClick.bind(null, contact)
+      return <li onClick={deleteContact}>{contact.first} {contact.last}</li>;
     });
   },
 

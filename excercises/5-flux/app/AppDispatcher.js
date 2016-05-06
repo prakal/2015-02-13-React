@@ -18,7 +18,7 @@ var AppDispatcher = assign(new Dispatcher(), {
       action: action
     };
     this.dispatch(payload);
-  }
+  },
 });
 
 module.exports = AppDispatcher;

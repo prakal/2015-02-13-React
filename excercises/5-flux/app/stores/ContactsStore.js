@@ -32,12 +32,19 @@ var ContactsStore = {
 
 ContactsStore.dispatchToken = AppDispatcher.register((payload) => {
   var { action } = payload;
-  console.log(action.type);
+
   if (action.type === ActionTypes.CONTACTS_LOADED) {
     setState({
       loaded: true,
       contacts: action.contacts
     });
+  }
+  
+  if (action.type === ActionTypes.CONTACT_DELETED) {
+    var newContacts = state.contacts.filter(function(contact){
+      return contact.id !== action.contact.id; 
+    });
+    setState({contacts: newContacts});
   }
 });
 

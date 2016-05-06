@@ -6,12 +6,13 @@ module.exports = {
 
   ActionTypes: keyMirror({
     CONTACTS_LOADED: null,
-    LOAD_CONTACTS: null
+    LOAD_CONTACTS: null,
+    CONTACT_DELETED: null
   }),
 
   PayloadSources: keyMirror({
     SERVER_ACTION: null,
-    VIEW_ACTION: null
+    VIEW_ACTION: null,
   })
 };
 
